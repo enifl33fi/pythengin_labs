@@ -1,0 +1,24 @@
+{
+  "best_model": "random_forest",
+  "features": [
+    "temperature_2m_max",
+    "temperature_2m_min",
+    "precipitation_sum",
+    "wind_speed_10m_max",
+    "latitude",
+    "longitude"
+  ],
+  "target": "rain_tomorrow",
+  "train_rows": 8760,
+  "test_rows": 2190,
+  "results": {
+    "logistic_regression": {
+      "roc_auc": 0.7065425677525322,
+      "accuracy": 0.6470319634703197
+    },
+    "random_forest": {
+      "roc_auc": 0.7228130237092133,
+      "accuracy": 0.6767123287671233
+    }
+  }
+}

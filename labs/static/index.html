@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather AI</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/awesomplete@1.1.7/awesomplete.css">
+    <script type="module" src="/static/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/awesomplete@1.1.7/awesomplete.min.js"></script>
+</head>
+<body>
+
+<main class="container">
+
+    <header>
+        <h1>Weather AI</h1>
+        <p>Прогноз погоды с использованием машинного обучения</p>
+    </header>
+
+    <section class="search-section">
+        <form id="weather-form">
+            <label for="city">Выберите город</label>
+
+            <div class="search-row">
+                <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        placeholder="Например, Helsinki"
+                        required
+                        autocomplete="off"
+                >
+
+                <button type="submit" id="search-button">
+                    Получить прогноз
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <p id="status" role="status"></p>
+
+    <section id="weather-result" hidden>
+
+        <section class="weather-scene" id="weather-scene">
+            <div class="scene-layer scene-rain">
+                <div class="rain-drops"></div>
+                <div class="rain-drops rain-drops-2"></div>
+                <div class="rain-mist"></div>
+            </div>
+
+            <div class="scene-layer scene-sun">
+                <div class="sun-rays"></div>
+                <div class="sun-core"></div>
+            </div>
+
+            <div class="scene-overlay">
+                <strong class="scene-title"></strong>
+                <p class="scene-subtitle"></p>
+            </div>
+        </section>
+
+        <h2 id="city-name"></h2>
+        <p id="forecast-date"></p>
+
+        <h3>Погодные параметры на завтра</h3>
+
+        <div class="weather-grid">
+
+            <article class="weather-card">
+                <span>Максимальная температура</span>
+                <strong id="temperature-max"></strong>
+            </article>
+
+            <article class="weather-card">
+                <span>Минимальная температура</span>
+                <strong id="temperature-min"></strong>
+            </article>
+
+            <article class="weather-card">
+                <span>Количество осадков</span>
+                <strong id="precipitation"></strong>
+            </article>
+
+            <article class="weather-card">
+                <span>Скорость ветра</span>
+                <strong id="wind-speed"></strong>
+            </article>
+
+        </div>
+
+    </section>
+
+    <section class="metrics-section">
+        <h3>Информация о модели</h3>
+        <button id="metrics-button" type="button">
+            Посмотреть метрики
+        </button>
+        <pre id="metrics-result"></pre>
+    </section>
+
+    <section class="model-upload-section">
+        <h3>Загрузить свою модель</h3>
+
+        <p class="hint">
+            Только файлы <code>.pkl</code>, обученные на тех же
+            признаках (до 500 МБ).
+        </p>
+
+        <form id="upload-form">
+            <div class="search-row">
+                <input
+                        id="model-file"
+                        name="file"
+                        type="file"
+                        accept=".pkl"
+                        required
+                >
+                <button type="submit" id="upload-button">
+                    Загрузить модель
+                </button>
+            </div>
+        </form>
+
+        <p id="upload-status" role="status"></p>
+
+        <div id="model-state-block" class="model-state-block" hidden>
+            <p id="model-state" class="model-state"></p>
+            <button type="button" id="reset-model-button">
+                Очистить загруженную модель
+            </button>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>
