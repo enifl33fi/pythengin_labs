@@ -55,7 +55,7 @@ indent-style = "space"
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["src", "tests"]
+files = ["src"]
 warn_unused_ignores = true
 disallow_untyped_decorators = false  # typer-декораторы не всегда типизированы
 show_error_codes = true

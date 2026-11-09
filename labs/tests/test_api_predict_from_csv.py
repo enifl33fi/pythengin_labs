@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 _COLUMNS = (
-    "temperature_2m_max,temperature_2m_min,precipitation_sum,"
-    "wind_speed_10m_max,latitude,longitude"
+    "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,latitude,longitude"
 )
 
 

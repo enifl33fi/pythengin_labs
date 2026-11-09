@@ -402,20 +402,23 @@ async def upload_model(
 
 @app.post("/reset-model")
 def reset_model() -> dict[str, str]:
-    """Вернуть базовую модель из data/best_model.pkl."""
-
+    """Вернуть базовую модель из data/best_model.pkl"""
     global model, model_source
 
     if not MODEL_PATH.exists():
-        raise HTTPException(
-            status_code=404,
-            detail="Файл базовой модели не найден.",
-        )
+        model = None
+        model_source = "none"
+        logger.info("Базовый файл отсутствует — сервис переведён в режим без модели.")
+        return {
+            "status": "success",
+            "message": "Базовой модели нет — сервис работает без модели.",
+        }
 
     try:
         model = load_model_from_path(MODEL_PATH)
         model_source = "file"
-    except Exception as exc:
+    except (OSError, ValueError, EOFError, AttributeError, TypeError) as exc:
+        # Файл есть, но битый — это уже настоящая ошибка, 500.
         logger.exception("Не удалось загрузить базовую модель.")
         raise HTTPException(
             status_code=500,
